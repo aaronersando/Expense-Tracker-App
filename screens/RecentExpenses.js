@@ -13,6 +13,7 @@ export default function RecentExpenses() {
     <ExpensesOutput
       expensesPeriod={"Last 7 days"}
       expenses={expensesForLastWeek}
+      fallbacktext={"No expenses for the last week."}
     />
   );
 }

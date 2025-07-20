@@ -5,5 +5,11 @@ import { useSelector } from "react-redux";
 
 export default function AllExpenses() {
   const expenses = useSelector((state) => state.expenses);
-  return <ExpensesOutput expensesPeriod={"Total"} expenses={expenses} />;
+  return (
+    <ExpensesOutput
+      expensesPeriod={"Total"}
+      expenses={expenses}
+      fallbacktext={"No registered expenses found!"}
+    />
+  );
 }
