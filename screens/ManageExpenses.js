@@ -3,10 +3,19 @@ import React, { useLayoutEffect } from "react";
 import IconButton from "../components/UI/IconButton";
 import { GlobalStyles } from "../constants/styles";
 import Button from "../components/UI/Button";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  addExpense,
+  deleteExpense,
+  updateExpense,
+} from "../store/expensesSlice";
 
 export default function ManageExpenses({ route, navigation }) {
   const editedExpenseId = route.params?.expenseId;
   const isEditing = !!editedExpenseId;
+
+  const expenses = useSelector((state) => state.expenses);
+  const dispatch = useDispatch();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -14,14 +23,44 @@ export default function ManageExpenses({ route, navigation }) {
     });
   }, [navigation, isEditing]);
 
-  function handleDeleteExpense() {
-    navigation.goBack();
-  }
   function handleCancel() {
     navigation.goBack();
   }
   function handleConfirm() {
+    if (isEditing) {
+      handleUpdateExpense();
+    } else {
+      handleAddExpense();
+    }
     navigation.goBack();
+  }
+
+  function handleDeleteExpense() {
+    dispatch(deleteExpense(editedExpenseId));
+    navigation.goBack();
+  }
+
+  function handleUpdateExpense() {
+    dispatch(
+      updateExpense({
+        id: editedExpenseId,
+        data: {
+          description: "Updated Sample",
+          amount: 100,
+          date: new Date(),
+        },
+      })
+    );
+  }
+  function handleAddExpense() {
+    dispatch(
+      addExpense({
+        id: Math.random().toString(),
+        description: "Sample",
+        amount: 0,
+        date: new Date(),
+      })
+    );
   }
 
   return (
