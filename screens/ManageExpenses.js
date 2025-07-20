@@ -47,7 +47,7 @@ export default function ManageExpenses({ route, navigation }) {
         data: {
           description: "Updated Sample",
           amount: 100,
-          date: new Date(),
+          date: new Date("2022-02-10"),
         },
       })
     );
@@ -58,7 +58,7 @@ export default function ManageExpenses({ route, navigation }) {
         id: Math.random().toString(),
         description: "Sample",
         amount: 0,
-        date: new Date(),
+        date: new Date("2022-02-10"),
       })
     );
   }
