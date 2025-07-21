@@ -1,11 +1,11 @@
 import axios from "axios";
+import { FIREBASE_DATABASE_URL } from "@env";
 
-const BASE_URL =
-  "YOUR_FIREBASE_URL_HERE";
+const BASE_URL = FIREBASE_DATABASE_URL;
 
 export async function storeExpense(expenseData) {
-  const respone = await axios.post(BASE_URL + "/expenses.json", expenseData);
-  const id = respone.data.name;
+  const response = await axios.post(BASE_URL + "/expenses.json", expenseData);
+  const id = response.data.name;
   return id;
 }
 

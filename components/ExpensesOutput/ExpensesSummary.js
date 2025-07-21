@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    marginVertical: 12,
   },
   period: {
     fontSize: 12,
