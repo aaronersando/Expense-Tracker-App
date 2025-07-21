@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getFormattedDate } from "../util/date";
-import { act } from "react";
 
 function generateId(date) {
   const dateStr = getFormattedDate(date);

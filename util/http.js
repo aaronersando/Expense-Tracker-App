@@ -11,7 +11,6 @@ export async function storeExpense(expenseData) {
 
 export async function fetchExpense() {
   const response = await axios.get(BASE_URL + "/expenses.json");
-  console.log(response.data);
   const expenses = [];
   for (const key in response.data) {
     const expenseObj = {
@@ -30,6 +29,6 @@ export function updateExpenseDb(id, expenseData) {
   return axios.put(BASE_URL + `/expenses/${id}.json`, expenseData);
 }
 
-export function deleteExpenseDb() {
+export function deleteExpenseDb(id) {
   return axios.delete(BASE_URL + `/expenses/${id}.json`);
 }
