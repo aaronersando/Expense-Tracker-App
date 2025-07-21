@@ -10,7 +10,7 @@ import {
   updateExpense,
 } from "../store/expensesSlice";
 import ExpenseForm from "../components/ManageExpense/ExpenseForm";
-import { storeExpense } from "../util/http";
+import { deleteExpenseDb, storeExpense, updateExpenseDb } from "../util/http";
 
 export default function ManageExpenses({ route, navigation }) {
   const editedExpenseId = route.params?.expenseId;
@@ -35,6 +35,7 @@ export default function ManageExpenses({ route, navigation }) {
 
   async function handleConfirm(expenseData) {
     if (isEditing) {
+      await updateExpenseDb(editedExpenseId, expenseData);
       dispatch(updateExpense(editedExpenseId, expenseData));
     } else {
       const id = await storeExpense(expenseData);
@@ -43,7 +44,8 @@ export default function ManageExpenses({ route, navigation }) {
     navigation.goBack();
   }
 
-  function handleDeleteExpense() {
+  async function handleDeleteExpense() {
+    await deleteExpenseDb(editedExpenseId);
     dispatch(deleteExpense(editedExpenseId));
     navigation.goBack();
   }
