@@ -9,6 +9,7 @@ import {
   deleteExpense,
   updateExpense,
 } from "../store/expensesSlice";
+import ExpenseForm from "../components/ManageExpense/ExpenseForm";
 
 export default function ManageExpenses({ route, navigation }) {
   const editedExpenseId = route.params?.expenseId;
@@ -65,6 +66,7 @@ export default function ManageExpenses({ route, navigation }) {
 
   return (
     <View style={styles.container}>
+      <ExpenseForm />
       <View style={styles.buttons}>
         <Button style={styles.button} mode={"flat"} onPress={handleCancel}>
           Cancel
