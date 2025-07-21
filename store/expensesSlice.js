@@ -77,10 +77,7 @@ export const expensesSlice = createSlice({
       const expense = {
         ...action.payload,
         id: generateId(action.payload.date),
-        date:
-          action.payload.date instanceof Date
-            ? action.payload.date.toISOString().slice(0, 10)
-            : action.payload.date, // ensure string
+        date: action.payload.date,
       };
       state.push(expense);
     },
