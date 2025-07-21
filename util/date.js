@@ -1,6 +1,6 @@
 export function getFormattedDate(date) {
   const d = typeof date === "string" ? new Date(date) : date;
-  return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
+  return d.toISOString().slice(0, 10);
 }
 
 export function isWithinLast7Days(date) {
