@@ -10,6 +10,7 @@ import {
   updateExpense,
 } from "../store/expensesSlice";
 import ExpenseForm from "../components/ManageExpense/ExpenseForm";
+import { storeExpense } from "../util/http";
 
 export default function ManageExpenses({ route, navigation }) {
   const editedExpenseId = route.params?.expenseId;
@@ -32,11 +33,12 @@ export default function ManageExpenses({ route, navigation }) {
     navigation.goBack();
   }
 
-  function handleConfirm(expenseData) {
+  async function handleConfirm(expenseData) {
     if (isEditing) {
       dispatch(updateExpense(editedExpenseId, expenseData));
     } else {
-      dispatch(addExpense(expenseData));
+      const id = await storeExpense(expenseData);
+      dispatch(addExpense({ ...expenseData, id: id }));
     }
     navigation.goBack();
   }
